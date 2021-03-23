@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <!--10 (desafio). Crie um programa em HTML/JS que analisa o desempenho de um atacante de futebol, o qual:
+
+a) Solicita a quantas partidas um atacante jogou
+
+b) Solicita quantos gols ele marcou
+
+c) Ao clicar em "Estudar atacante", calcule sua média de gols/partida
+
+d) Exiba, abaixo do botão:
+
+A frase "Melhor mudar de posição" e a foto de um jogador de futebol bem ruim, caso a média for menor que 0.2
+
+A frase "Atacante mediano" e a foto de um jogador de futebol comum, caso a média for entre 0.2 e 0.6
+
+A frase "Atacante de futuro" e a foto de um bom jogador de futebol, caso a média for acima de 0.6
+
+e) Abaixo de tudo, exibir a frase "Sua média de gols/partida é de X" (onde X deve estar sempre com 1 casa decimal)-->
+
+    <span style="margin-left: 300px; position: relative; float: left;" >
+        <h2>Analista de atacante</h2>
+        
+        Quantas partidas jogou?
+        <input id="qnt_jogos" type="text">
+        <br><br>
+        Quantos gols marcou?
+        <input id="qnt_gols" type="text">
+        <br><br>
+        <button style="cursor: pointer;" onclick="estudar()"><img style="width: 100px;" src="img1.png" alt=""></button>
+    </span>
+
+<br><br>
+<span style="float: right; position: relative; margin-top: -40px; margin-right: 200px;">
+    <div style="text-align: center;" id="div_msg"></div>
+    <br>
+    <div style="text-align: center;" id="div_msg2"></div> 
+</span>
+</body>
+</html>
+
+<script>
+    
+    
+   
+    
+    function estudar(){
+        var result = Number(qnt_gols.value) / Number(qnt_jogos.value);
+
+        if(result < 0.2){
+        div_msg.innerHTML = `Melhor mudar de posição<br> <img style="width: 400px;" src="https://www.lance.com.br/files/article_main/uploads/2020/02/21/5e501d507baea.jpeg" alt="">`;
+        
+        }
+
+        else if (result >= 0.2 && result <= 0.6){
+            div_msg.innerHTML = `Atacante mediano <br> <img style="width: 400px;" src="https://bolavip.com/__export/1608489237679/sites/bolavip/img/2020/12/20/50205509283_c007cd7c3f_o_crop1608489208939.jpg_1902800913.jpg" alt="">`;
+            
+        }   else{
+        div_msg.innerHTML = `Atacante do futuro  <br> <img style="width: 400px;" src="https://static-wp-tor15-prd.torcedores.com/wp-content/uploads/2019/11/gabigol-do-flamengo.jpg" alt="">`;
+        }
+
+
+        
+        div_msg2.innerHTML = `Sua média de gols foi ${result.toFixed(2)}`;
+    }
+
+    
+</script>
