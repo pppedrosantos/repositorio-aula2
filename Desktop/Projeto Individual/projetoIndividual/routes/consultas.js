@@ -2,7 +2,7 @@ var express = require('express');
 var router = express.Router();
 var sequelize = require('../models').sequelize;
 var consulta = require('../models').consulta;
-var usuario = require('../models').usuario;
+
 
 
 router.post('/consultar/:idUsuario', function(req, res, next) {
@@ -25,12 +25,18 @@ router.post('/consultar/:idUsuario', function(req, res, next) {
   	});
 });
 
-router.get('/', function(req, res, next) {
+router.get('/:idUsuario', function(req, res, next) {
 	console.log('Recuperando todas as publicações');
-	
-    let instrucaoSql = `select * from consulta  join usuario on fkUsuario = id;
-	`;
 
+	var idUsuario = req.params.idUsuario;
+
+    let instrucaoSql = `SELECT 
+    usuario.nome,
+    destino
+    FROM consulta
+    INNER JOIN usuario
+    ON fkUsuario = id where fkUsuario = ${idUsuario}`;
+	
 	sequelize.query(instrucaoSql, {
 		model: consulta,
 		mapToModel: true 
